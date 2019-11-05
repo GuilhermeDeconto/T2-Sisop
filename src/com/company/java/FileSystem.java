@@ -1,13 +1,11 @@
-import java.io.FileNotFoundException;
+package java;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
-import java.io.FilterInputStream;
 
 public class FileSystem {
 	static int block_size = 1024;
