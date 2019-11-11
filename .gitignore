@@ -1,3 +1,7 @@
 *.exe
 filesystem.dat
 .vscode/
+.DS_Store
+T2-Sisop.iml
+.idea
+*.out
