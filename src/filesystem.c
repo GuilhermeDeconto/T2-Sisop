@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <limits.h>
 
 #define BLOCK_SIZE		1024
 #define BLOCKS			2048
@@ -92,6 +95,24 @@ void copy_str(char* target, char* src)
 	}
 }
 
+static void mymkdir(const char *dir) {
+        char tmp[256];
+        char *p = NULL;
+        size_t len;
+
+        snprintf(tmp, sizeof(tmp),"%s",dir);
+        len = strlen(tmp);
+        if(tmp[len - 1] == '/')
+                tmp[len - 1] = 0;
+        for(p = tmp + 1; *p; p++)
+                if(*p == '/') {
+                        *p = 0;
+                        mkdir(tmp, S_IRWXU);
+                        *p = '/';
+                }
+        mkdir(tmp, S_IRWXU);
+}
+
 int main(void)
 {
 	FILE *f;
@@ -149,6 +170,8 @@ int main(void)
 		read_dir_entry(ROOT_BLOCK, i, &dir_entry);
 		printf("Entry %d, file: %s attr: %d first: %d size: %d\n", i, dir_entry.filename, dir_entry.attributes, dir_entry.first_block, dir_entry.size);
 	}
+    
+    mymkdir("/Users/guilhermedeconto/Documents/git meus projetos/T2-Sisop/hello");
 
 	return 0;
 }
