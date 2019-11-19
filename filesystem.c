@@ -493,8 +493,8 @@ void unlink(char* directories){
     union data_blocks block;
     
     if (directories[0] == '/'){
-        index_block_fat = 4;
-        block = read_block(4);
+        index_block_fat = 5;
+        block = read_block(5);
     }else{
         printf("Caminho não possui diretório root!\n");
         return;
@@ -524,7 +524,7 @@ void unlink(char* directories){
                 //found_dir = 1;
                 if(block.root_dir[i].attributes == 1){
                     index_block_fat = block.root_dir[i].first_block;
-                    read_block(block.root_dir[i].first_block);
+                    block = read_block(block.root_dir[i].first_block);
                 }else{
                     printf("%s não é um diretório!\n",token);
                 }
