@@ -1050,6 +1050,44 @@ void read(char* directories){
 	free(cpy);
 }
 
+void commands(){
+
+	printf("Descrição dos comandos:\n");
+
+	printf("init - inicializar o sistema de arquivo com as estruturas de dados\n");
+	printf("\tinit\n\n");
+
+	printf("load - carregar o sistema de arquivo do disco;\n");
+	printf("\tload\n\n");
+
+	printf("ls - listar diretório;\n");
+	printf("\tls /caminho/diretorio\n\n");
+
+	printf("mkdir - criar diretório;\n");
+	printf("\tmkdir /caminho/diretorio\n\n");
+
+	printf("create - criar arquivo;\n");
+	printf("\tcreate /caminho/arquivo\n\n");
+
+	printf("unlink - deletar arquivo ou diretório (deve estar vazio);\n");
+	printf("\tunlink /caminho/{arquivo|diretorio}\n\n");
+
+	printf("write 'string' - escrever dados em um arquivo (overwrite);\n");
+	printf("\twrite \"string\" /caminho/arquivo\n\n");
+
+	printf("append 'string' - anexar dados em um arquivo;\n");
+	printf("\tappend \"string\" /caminho/arquivo\n\n");
+
+	printf("read - ler conteúdo\n");
+	printf("\tread /caminho/arquivo\n\n");
+
+	printf("clear - limpar o terminal;\n");
+	printf("\tclear\n\n");
+
+	printf("exit - sair do terminal;\n");
+	printf("\texit\n\n");
+}
+
 int main(){
     system("clear");
    char input_str[255];
@@ -1074,6 +1112,8 @@ int main(){
 
         }else if (strcmp(input_str,"clear") == 0){
             system("clear");
+        }else if (strcmp(input_str,"commands") == 0){
+            commands(); 
         }else if (strstr(input_str, "\"") != NULL) {
             char *cpy = malloc(strlen(input_str)*sizeof(char));
              strcpy(cpy, input_str);
